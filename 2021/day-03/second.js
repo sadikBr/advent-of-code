@@ -7,58 +7,35 @@ readLines('./input.txt').then((values) => {
 });
 
 function getRatings(values) {
-  let oxygenGeneratorRatingArray = [...values];
-  let co2ScrubberRatingArray = [...values];
-
-  let median;
-  let count = 0;
-
-  while (oxygenGeneratorRatingArray.length > 1) {
-    median = Math.ceil(oxygenGeneratorRatingArray.length / 2);
-
-    let sum = 0;
-    for (let i = 0; i < oxygenGeneratorRatingArray.length; i++) {
-      sum += Number(oxygenGeneratorRatingArray[i][count]);
-    }
-
-    if (sum >= median) {
-      oxygenGeneratorRatingArray = oxygenGeneratorRatingArray.filter(
-        (item) => item[count] === '1'
-      );
-    } else {
-      oxygenGeneratorRatingArray = oxygenGeneratorRatingArray.filter(
-        (item) => item[count] === '0'
-      );
-    }
-
-    count += 1;
-  }
-
-  count = 0;
-
-  while (co2ScrubberRatingArray.length > 1) {
-    median = Math.ceil(co2ScrubberRatingArray.length / 2);
-
-    let sum = 0;
-    for (let i = 0; i < co2ScrubberRatingArray.length; i++) {
-      sum += Number(co2ScrubberRatingArray[i][count]);
-    }
-
-    if (sum >= median) {
-      co2ScrubberRatingArray = co2ScrubberRatingArray.filter(
-        (item) => item[count] === '0'
-      );
-    } else {
-      co2ScrubberRatingArray = co2ScrubberRatingArray.filter(
-        (item) => item[count] === '1'
-      );
-    }
-
-    count += 1;
-  }
+  const oxygenGeneratorRating = getRating(values, '1', '0');
+  const co2ScrubberRating = getRating(values, '0', '1');
 
   return {
-    oxygenGeneratorRating: parseInt(oxygenGeneratorRatingArray[0], 2),
-    co2ScrubberRating: parseInt(co2ScrubberRatingArray[0], 2),
+    oxygenGeneratorRating,
+    co2ScrubberRating,
   };
+}
+
+function getRating(array, val1, val2) {
+  let count = 0;
+  let newArray = [...array];
+
+  while (newArray.length > 1) {
+    const median = Math.ceil(newArray.length / 2);
+
+    let sum = 0;
+    for (let i = 0; i < newArray.length; i++) {
+      sum += Number(newArray[i][count]);
+    }
+
+    if (sum >= median) {
+      newArray = newArray.filter((item) => item[count] === val1);
+    } else {
+      newArray = newArray.filter((item) => item[count] === val2);
+    }
+
+    count += 1;
+  }
+
+  return parseInt(newArray[0], 2);
 }
