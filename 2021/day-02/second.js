@@ -31,7 +31,7 @@ const methods = {
   },
 };
 
-getInstructions('second.txt').then((instructions) => {
+getInstructions('./input.txt').then((instructions) => {
   let hPosition = 0;
   let depth = 0;
   let aim = 0;

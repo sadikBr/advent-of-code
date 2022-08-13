@@ -1,7 +1,7 @@
 // Mission: count the number of times the sum of measurements in this sliding window increases
 const { makeNumbersArray } = require('./utils.js');
 
-makeNumbersArray('second.txt').then((array) => {
+makeNumbersArray('./input.txt').then((array) => {
   const total = countNumberOfIncreases(array);
   console.log(total);
 });

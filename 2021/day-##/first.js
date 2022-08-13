@@ -1,7 +1,7 @@
 // Mission: calculate the sum of all the number in the file first.txt
 const { makeNumbersArray } = require('./utils.js');
 
-makeNumbersArray('first.txt').then((array) => {
+makeNumbersArray('input.txt').then((array) => {
   const total = sum(array);
   console.log(total);
 });

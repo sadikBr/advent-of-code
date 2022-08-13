@@ -1,7 +1,7 @@
 // Mission: find the max number in the file second.txt
 const { makeNumbersArray } = require('./utils.js');
 
-makeNumbersArray('second.txt').then((array) => {
+makeNumbersArray('input.txt').then((array) => {
   const max = findMax(array);
   console.log(max);
 });

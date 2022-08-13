@@ -1,7 +1,7 @@
-// Mission: count the number of times a depth measurement increases
+// Task: count the number of times a depth measurement increases
 const { makeNumbersArray } = require('./utils.js');
 
-makeNumbersArray('first.txt').then((array) => {
+makeNumbersArray('./input.txt').then((array) => {
   const total = countNumberOfIncreases(array);
   console.log(total);
 });
@@ -9,15 +9,14 @@ makeNumbersArray('first.txt').then((array) => {
 function countNumberOfIncreases(array) {
   let prev = null;
   return array.reduce((count, val) => {
-    let returnVal = 0;
     if (prev) {
       if (val > prev) {
-        returnVal = count + 1;
+        count = count + 1;
       } else {
-        returnVal = count;
+        count = count;
       }
     }
     prev = val;
-    return returnVal;
+    return count;
   }, 0);
 }
